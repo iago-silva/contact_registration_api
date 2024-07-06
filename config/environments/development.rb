@@ -67,4 +67,11 @@ Rails.application.configure do
   config.generators do |g|
     g.test_framework false
   end
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+
+  # needed to Devise
+  config.session_store :cookie_store, key: '_interslice_session'
+  config.middleware.use ActionDispatch::Cookies
+  config.middleware.use config.session_store, config.session_options
 end

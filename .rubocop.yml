@@ -17,6 +17,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'db/**/*'
+    - 'config/environments/**/*.rb'
     - 'spec/**/*.rb'
 
 Metrics/MethodLength:
@@ -25,6 +26,9 @@ Metrics/MethodLength:
 
 Layout/LineLength:
   Max: 100
+  AllowedPatterns:
+    #allow comments
+    - !ruby/regexp /\A *# /
 
 Style/BlockDelimiters:
   EnforcedStyle: braces_for_chaining

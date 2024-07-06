@@ -2,10 +2,8 @@
 
 module Api
   class ApplicationController < ::ActionController::API
-    private
+    include DeviseTokenAuth::Concerns::SetUserByToken
 
-    def user
-      User.find_or_create_by!(email: 'iago_gtr@hotmail.com', password: 'iago1234')
-    end
+    before_action :authenticate_user!
   end
 end

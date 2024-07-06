@@ -4,15 +4,15 @@ module Api
   module V1
     class ContactsController < ApplicationController
       def show
-        render json: user.contacts.find(params[:id])
+        render json: current_user.contacts.find(params[:id])
       end
 
       def index
-        render json: user.contacts.all
+        render json: current_user.contacts.all
       end
 
       def create
-        contact = user.contacts.build(contact_params)
+        contact = current_user.contacts.build(contact_params)
         if contact.save
           render json: contact, status: :created
         else
@@ -21,7 +21,7 @@ module Api
       end
 
       def update
-        contact = user.contacts.find(params[:id])
+        contact = current_user.contacts.find(params[:id])
         if contact.update(contact_params)
           render json: contact
         else
@@ -30,7 +30,7 @@ module Api
       end
 
       def destroy
-        user.contacts.find(params[:id]).destroy
+        current_user.contacts.find(params[:id]).destroy
       end
 
       private
