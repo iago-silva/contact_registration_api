@@ -10,7 +10,7 @@ class Contact < ApplicationRecord
   validates :cpf, presence: true
   validates :phone, presence: true
 
-  validate :valid_cpf, on: :create
+  validate :valid_cpf, on: [:create, :update]
 
   accepts_nested_attributes_for :address, update_only: true
 
