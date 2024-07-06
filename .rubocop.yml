@@ -1,0 +1,63 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.0
+  Exclude:
+    - 'Gemfile.lock'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+
+Layout/LineLength:
+  Max: 100
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false

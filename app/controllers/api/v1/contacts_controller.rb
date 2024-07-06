@@ -1,20 +1,22 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class ContactsController < ApplicationController
       def show
         render json: user.contacts.find(params[:id])
-      end    
+      end
 
       def index
         render json: user.contacts.all
-      end    
+      end
 
       def create
         contact = user.contacts.build(contact_params)
         if contact.save
-          render json: contact, status: 201
+          render json: contact, status: :created
         else
-          render json: { errors: contact.errors }, status: 422
+          render json: { errors: contact.errors }, status: :unprocessable_entity
         end
       end
 
@@ -23,7 +25,7 @@ module Api
         if contact.update(contact_params)
           render json: contact
         else
-          render json: { errors: contact.errors }, status: 422
+          render json: { errors: contact.errors }, status: :unprocessable_entity
         end
       end
 
@@ -35,9 +37,9 @@ module Api
 
       def contact_params
         params.require(:contact).permit(
-          :name, :cpf, :phone, 
-          address_attributes: 
-            [ :zipcode, :number, :street, :neighborhood, :city, :state, :complement ]
+          :name, :cpf, :phone,
+          address_attributes:
+            [:zipcode, :number, :street, :neighborhood, :city, :state, :complement]
         )
       end
     end
