@@ -5,5 +5,4 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :contacts, dependent: :destroy
-  has_many :authentications, dependent: :destroy
 end

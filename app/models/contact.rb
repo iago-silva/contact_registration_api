@@ -6,6 +6,19 @@ class Contact < ApplicationRecord
   has_one :address, dependent: :destroy
 
   validates :address, presence: true
+  validates :name, presence: true
+  validates :cpf, presence: true
+  validates :phone, presence: true
+
+  validate :valid_cpf, on: :create
 
   accepts_nested_attributes_for :address, update_only: true
+
+  private
+
+  def valid_cpf
+    return if CPF.valid?(cpf)
+
+    errors.add(:cpf, :invalid)
+  end
 end
