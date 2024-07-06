@@ -68,10 +68,17 @@ Rails.application.configure do
     g.test_framework false
   end
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
-
-  # needed to Devise
+  # needed by devise to store user stuff in session
   config.session_store :cookie_store, key: '_interslice_session'
   config.middleware.use ActionDispatch::Cookies
   config.middleware.use config.session_store, config.session_options
+
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
+
+  # needed to user be able to open the change password link in email
+  # rails does not like redirecting to other origins because of safety
+  config.action_controller.raise_on_open_redirects = false
 end

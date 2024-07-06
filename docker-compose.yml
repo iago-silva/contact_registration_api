@@ -13,11 +13,19 @@ services:
       - .env
     depends_on:
       - db
+      - mailcatcher
     tty: true
     stdin_open: true
+    links:
+      - mailcatcher
   db:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+  mailcatcher:
+    image: yappabe/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
