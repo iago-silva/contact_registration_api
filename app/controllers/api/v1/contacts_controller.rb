@@ -26,11 +26,15 @@ module Api
       end
 
       def update
-        contact = current_user.contacts.find(params[:id])
-        if contact.update(contact_params)
-          render json: contact
-        else
-          render json: { errors: contact.errors }, status: :unprocessable_entity
+        contact = current_user.contacts.find_by(id: params[:id])
+        if contact
+          if contact.update(contact_params)
+            render json: contact
+          else
+            render json: { errors: contact.errors }, status: :unprocessable_entity
+          end
+        else 
+          head :not_found
         end
       end
 
