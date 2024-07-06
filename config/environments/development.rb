@@ -64,6 +64,13 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+
+
+
+
+
+
+
   config.generators do |g|
     g.test_framework false
   end
@@ -78,7 +85,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
 
-  # needed to user be able to open the change password link in email
+  # needed to user be able to open the change password link in email sent by devise
   # rails does not like redirecting to other origins because of safety
   config.action_controller.raise_on_open_redirects = false
 end

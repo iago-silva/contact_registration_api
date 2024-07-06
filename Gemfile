@@ -15,10 +15,6 @@ gem 'rails', '~> 7.0.8', '>= 7.0.8.4'
 gem 'cpf_cnpj'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-group :development, :test do
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
-end
-
 group :development do
   gem 'rubocop-performance', '~> 1.11.4', require: false
   gem 'rubocop-rails', '~> 2.11.3', require: false

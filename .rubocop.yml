@@ -27,7 +27,7 @@ Metrics/MethodLength:
 Layout/LineLength:
   Max: 100
   AllowedPatterns:
-    #allow comments
+    # allow comments
     - !ruby/regexp /\A *# /
 
 Style/BlockDelimiters:
