@@ -4,7 +4,12 @@ module Api
   module V1
     class ContactsController < ApplicationController
       def show
-        render json: current_user.contacts.find(params[:id])
+        contact = current_user.contacts.find_by(id: params[:id])
+        if contact
+          render json: contact
+        else
+          head :not_found
+        end
       end
 
       def index
@@ -30,7 +35,12 @@ module Api
       end
 
       def destroy
-        current_user.contacts.find(params[:id]).destroy
+        contact = current_user.contacts.find_by(id: params[:id])
+        if contact
+          contact.destroy
+        else
+          head :not_found
+        end
       end
 
       private
