@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    working_dir: /var/app
+    entrypoint: /var/app/entrypoint.sh
+    volumes:
+      - .:/var/app
+    ports:
+      - 3001:3001
+    env_file:
+      - .env
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
