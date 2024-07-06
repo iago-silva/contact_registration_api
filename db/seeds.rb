@@ -1,5 +1,4 @@
 # frozen_string_literal: true
 
-ActiveRecord::Base.transaction do
-  Rails.logger.debug 'hello'
-end
+# ActiveRecord::Base.transaction do
+# end
