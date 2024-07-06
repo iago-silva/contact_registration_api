@@ -53,7 +53,10 @@ module Api
         params.require(:contact).permit(
           :name, :cpf, :phone,
           address_attributes:
-            [:zipcode, :number, :street, :neighborhood, :city, :state, :complement]
+            [
+              :zipcode, :number, :street, :neighborhood, 
+              :city, :state, :latitude, :longitude, :complement
+            ]
         )
       end
     end

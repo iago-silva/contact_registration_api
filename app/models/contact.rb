@@ -7,7 +7,7 @@ class Contact < ApplicationRecord
 
   validates :address, presence: true
   validates :name, presence: true
-  validates :cpf, presence: true
+  validates :cpf, presence: true, uniqueness: { scope: :user }
   validates :phone, presence: true
 
   validate :valid_cpf, on: [:create, :update]

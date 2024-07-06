@@ -9,4 +9,6 @@ class Address < ApplicationRecord
   validates :neighborhood, presence: true
   validates :city, presence: true
   validates :state, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 end
