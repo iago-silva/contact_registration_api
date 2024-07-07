@@ -4,8 +4,14 @@ module Api
   module V1
     class ContactsController < ApplicationController
       def index
-        contacts = current_user.contacts.by_name_or_cpf(params[:search]).page(params[:page])
+        order = params[:order] == "desc" ? "desc" : "asc"
 
+        contacts = current_user
+                    .contacts
+                    .by_name_or_cpf(params[:search])
+                    .order(name: order)
+                    .page(params[:page])
+                    
         render json: contacts, include: ['address'] 
       end
 
