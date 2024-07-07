@@ -3,21 +3,10 @@
 module Api
   module V1
     class ContactsController < ApplicationController
-      def show
-        contact = current_user.contacts.find_by(id: params[:id])
-        if contact
-          # retornar o address serializado
-          render json: contact
-        else
-          head :not_found
-        end
-      end
-
       def index
         contacts = current_user.contacts.by_name_or_cpf(params[:search]).page(params[:page])
 
-          # retornar o address serializado
-        render json: contacts
+        render json: contacts, include: ['address'] 
       end
 
       def create
