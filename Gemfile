@@ -18,6 +18,12 @@ gem 'active_model_serializers'
 gem 'faraday'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+group :development, :test do
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'database_cleaner', '~> 2.0.1'
+  gem 'factory_bot_rails'
+end
+
 group :development do
   gem 'rubocop-performance', '~> 1.11.4', require: false
   gem 'rubocop-rails', '~> 2.11.3', require: false
