@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Contact < ApplicationRecord
+  include Searchable
+
   belongs_to :user
 
   has_one :address, dependent: :destroy
+
+  scope :by_name_or_cpf, -> (term) { search_ilike_for([:name, :cpf], term) }
 
   validates :address, presence: true
   validates :name, presence: true

@@ -6,6 +6,7 @@ module Api
       def show
         contact = current_user.contacts.find_by(id: params[:id])
         if contact
+          # retornar o address serializado
           render json: contact
         else
           head :not_found
@@ -13,7 +14,10 @@ module Api
       end
 
       def index
-        render json: current_user.contacts.all
+        contacts = current_user.contacts.by_name_or_cpf(params[:search]).page(params[:page])
+
+          # retornar o address serializado
+        render json: contacts
       end
 
       def create
