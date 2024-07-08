@@ -1,0 +1,50 @@
+name: RSpec
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: contact_registration_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DATABASE_USERNAME: 'postgres'
+      DATABASE_PASSWORD: 'postgres'
+      DATABASE_HOST: 'localhost'
+      DEFAULT_TIME_SLOTS_INTERVAL: '15'
+      AUTHORIZATION_CODE: 'LxXXH6iEP0jt2wrW8JMn0c5WYM4AGhBnLCCtDfuocBwazb64eu0iU8jOGfpqMF6oT91hu72hBh3pFu7ijkDOHuNwBurefFzH5ljbWBNGAjz59GZp55bj6nt1gcIXv5WmY0cJIXBgzPLQoHv7U3t8TN2j8aKRG01ngyDr6s3t2ggqvbZckL5JxGwHebGw1YPN8QNoDqp1az2JijkE88Ki3yM7htEHpXnbFu1eI0vcbeVRC5mAbYaF3xT8novwf04'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Prepare DB
+        run: |
+          bin/rails db:create db:migrate
+
+      - name: Run RSpec
+        run: |
+          bundle exec rspec

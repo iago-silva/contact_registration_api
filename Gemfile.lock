@@ -75,6 +75,7 @@ GEM
     bcrypt (3.1.20)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    brakeman (5.0.4)
     builder (3.3.0)
     case_transform (0.2)
       activesupport
@@ -266,6 +267,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   bootsnap
+  brakeman (~> 5.0.4)
   cpf_cnpj
   database_cleaner (~> 2.0.1)
   devise
