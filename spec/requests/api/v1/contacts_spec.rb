@@ -5,13 +5,13 @@ require 'rails_helper'
 describe 'Contacts request', type: :request do
   let(:user) { create(:user) }
   let(:user_auth_headers) { user.create_new_auth_token }
-  let(:params) {
+  let(:params) do
     {
       search: 'name',
       page: '1',
       order: 'desc'
     }
-  }
+  end
 
   describe '#index' do
     before do
