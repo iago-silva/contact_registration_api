@@ -22,19 +22,19 @@ describe 'Contacts request', type: :request do
     let(:cpf) { '44037438038' }
     let(:params) do
       {
-        "contact": {
-          "name": "Marcelo",
-          "cpf": cpf,
-          "phone": "+5587988427333",
-          "address_attributes": {
-            "zipcode": "56309020",
-            "number": "205",
-            "street": "3",
-            "neighborhood": "Cohab VI",
-            "city": "Petrolina",
-            "state": "Pernambuco",
-            "latitude": "23131231",
-            "longitude": "123123123"
+        contact: {
+          name: 'Marcelo',
+          cpf: cpf,
+          phone: '+5587988427333',
+          address_attributes: {
+            zipcode: '56309020',
+            number: '205',
+            street: '3',
+            neighborhood: 'Cohab VI',
+            city: 'Petrolina',
+            state: 'Pernambuco',
+            latitude: '23131231',
+            longitude: '123123123'
           }
         }
       }
