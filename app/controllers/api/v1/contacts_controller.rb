@@ -4,15 +4,15 @@ module Api
   module V1
     class ContactsController < ApplicationController
       def index
-        order = params[:order] == "desc" ? "desc" : "asc"
+        order = params[:order] == 'desc' ? 'desc' : 'asc'
 
         contacts = current_user
-                    .contacts
-                    .by_name_or_cpf(params[:search])
-                    .order(name: order)
-                    .page(params[:page])
-                    
-        render json: {total_pages: contacts.total_pages, contacts: contacts }, include: ['address'] 
+                   .contacts
+                   .by_name_or_cpf(params[:search])
+                   .order(name: order)
+                   .page(params[:page])
+
+        render json: { total_pages: contacts.total_pages, contacts: contacts }, include: ['address']
       end
 
       def create
@@ -32,7 +32,7 @@ module Api
           else
             render json: { errors: contact.errors }, status: :unprocessable_entity
           end
-        else 
+        else
           head :not_found
         end
       end
@@ -53,7 +53,7 @@ module Api
           :name, :cpf, :phone,
           address_attributes:
             [
-              :zipcode, :number, :street, :neighborhood, 
+              :zipcode, :number, :street, :neighborhood,
               :city, :state, :latitude, :longitude, :complement
             ]
         )

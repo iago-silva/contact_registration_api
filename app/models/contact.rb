@@ -7,7 +7,7 @@ class Contact < ApplicationRecord
 
   has_one :address, dependent: :destroy
 
-  scope :by_name_or_cpf, -> (term) { search_ilike_for([:name, :cpf], term) }
+  scope :by_name_or_cpf, ->(term) { search_ilike_for([:name, :cpf], term) }
 
   validates :address, presence: true
   validates :name, presence: true

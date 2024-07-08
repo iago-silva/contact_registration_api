@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_06_133002) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_08_084929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_06_133002) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cpf", "user_id"], name: "index_contacts_on_cpf_and_user_id", unique: true
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
