@@ -5,13 +5,28 @@ require 'rails_helper'
 describe 'Contacts request', type: :request do
   let(:user) { create(:user) }
   let(:user_auth_headers) { user.create_new_auth_token }
+  let(:params) {
+    {
+      search: 'name',
+      page: '1',
+      order: 'desc'
+    }
+  }
 
   describe '#index' do
     before do
-      get api_v1_contacts_path, headers: user_auth_headers
+      get api_v1_contacts_path, headers: user_auth_headers, params: params
+    end
+
+    context 'when pass params' do
+      it 'returns ok http status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     context 'when doesn\'t pass params' do
+      let(:params) { {} }
+
       it 'returns ok http status' do
         expect(response).to have_http_status(:ok)
       end
