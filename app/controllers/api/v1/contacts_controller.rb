@@ -12,7 +12,7 @@ module Api
                     .order(name: order)
                     .page(params[:page])
                     
-        render json: contacts, include: ['address'] 
+        render json: {total_pages: contacts.total_pages, contacts: contacts }, include: ['address'] 
       end
 
       def create

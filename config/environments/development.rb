@@ -80,7 +80,7 @@ Rails.application.configure do
   config.middleware.use ActionDispatch::Cookies
   config.middleware.use config.session_store, config.session_options
 
-  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.default_url_options = { host: 'localhost:3001' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
