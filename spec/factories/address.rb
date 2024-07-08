@@ -2,12 +2,14 @@
 
 FactoryBot.define do
   factory :address do
-    zip_code { 'zip_code' }
+    zipcode { 'zip_code' }
     number { 'number' }
     street { 'street' }
     neighborhood { 'neighborhood' }
     city { 'city' }
     state { 'state' }
     complement { 'complement' }
+    latitude { '3123213123' }
+    longitude { '123123123' }
   end
 end
