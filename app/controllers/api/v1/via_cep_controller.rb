@@ -4,7 +4,7 @@ module Api
       def index
         response = Faraday.get("https://viacep.com.br/ws/#{params[:cep]}/json")
 
-        render json: response.body
+        render json: response.body, status: response.status
       end
     end
   end
