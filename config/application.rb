@@ -25,5 +25,14 @@ module App
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.encoding = 'utf-8'
+    config.time_zone = 'America/Recife'
+    config.active_record.default_timezone = :local
+    config.i18n.available_locales = ['pt-BR', 'en']
+    config.i18n.enforce_available_locales = true
+    config.i18n.default_locale = 'pt-BR'
+    config.i18n.load_path +=
+      Dir[Rails.root.join('config/locales/**/*.yml').to_s]
   end
 end
